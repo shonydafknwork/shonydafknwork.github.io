@@ -185,6 +185,64 @@ section.light{background:#ececec;color:#111}
 }
 @media(max-width:520px){.idx{grid-template-columns:1fr}section{padding:10vh 5vw}}
 @media(prefers-reduced-motion:reduce){.rv,.w i{opacity:1;transform:none;transition:none}.mq div,.fw .ph,.badge{animation:none}}
+
+/* responsive fixes */
+html{-webkit-text-size-adjust:100%}
+section,.chap{padding-left:max(6vw,calc((100vw - 1700px)/2));padding-right:max(6vw,calc((100vw - 1700px)/2))}
+.hero{min-height:100vh;min-height:100svh}
+.info{grid-template-columns:repeat(auto-fit,minmax(min(210px,100%),1fr))}
+.idx{grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr))}
+.two>*,.hero>*{min-width:0}
+.chips span{max-width:100%}
+.svc li{gap:14px}
+.svc li span{flex:none}
+@media(max-width:900px){
+ .hero,.two{grid-template-columns:minmax(0,1fr)}
+ .hero{min-height:auto;padding-top:calc(13vh + env(safe-area-inset-top,0px));padding-bottom:8vh}
+ .col{height:clamp(300px,78vw,620px)}
+ .badge{width:92px;height:92px;right:2px;bottom:-10px}
+ .idx{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .gal,.gal.s2,.gal.s4,.gal.s5{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .svc li{font-size:clamp(20px,5.2vw,32px);padding:14px 0}
+ .svc li:hover{padding-left:0}
+ p.d{font-size:16px}
+ h2{font-size:clamp(40px,13vw,120px)}
+ .dock{flex-direction:row;right:max(12px,env(safe-area-inset-right,0px));bottom:max(12px,env(safe-area-inset-bottom,0px))}
+ .dock a{width:42px;height:42px;font-size:18px}
+ .player{padding:5px 12px 5px 5px}
+ .player button{width:38px;height:38px}
+ main+section{padding-bottom:calc(12vh + 60px)}
+ #lb img{max-width:94vw;max-height:76vh}
+ #lb button{width:44px;height:44px;font-size:20px}
+ #lb .x{top:12px;right:12px}
+ #lb .pv{left:8px}
+ #lb .nx{right:8px}
+ .stats{gap:8vw;margin:22px 0}
+ .stats b{font-size:clamp(56px,18vw,96px)}
+}
+@media(max-width:520px){
+ .idx{grid-template-columns:minmax(0,1fr)}
+ .info{margin:18px 0}
+ nav{padding-left:5vw;padding-right:5vw}
+ nav .b{font-size:21px}
+ .chips span{font-size:10px;padding:5px 11px;letter-spacing:.1em}
+ .cta a{padding:12px 20px;font-size:12px}
+ .gal,.gal.s2,.gal.s4,.gal.s5{gap:10px}
+}
+@media(max-width:380px){
+ .dock{gap:6px}
+ .dock a{width:38px;height:38px;font-size:17px}
+ .tag{letter-spacing:.18em;font-size:11px}
+}
+@media(min-width:2000px){
+ body{font-size:18px}
+ p.d{font-size:21px;max-width:760px}
+ .sub{max-width:640px}
+}
+@media(max-height:520px) and (orientation:landscape){
+ .hero{min-height:auto;padding-top:90px}
+ #lb img{max-height:70vh}
+}
 </style>
 </head>
 <body>
@@ -470,7 +528,7 @@ function fit(){
  h1.style.fontSize='';
  const base=parseFloat(getComputedStyle(h1).fontSize);
  const avail=h1.parentNode.clientWidth,w=n1.getBoundingClientRect().width;
- if(w>0)h1.style.fontSize=Math.min(base*avail/w*.98,innerWidth*.12,180)+'px';
+ if(w>0)h1.style.fontSize=Math.min(base*avail/w*.98,innerWidth*(innerWidth<=900?.2:.12),180)+'px';
 }
 fit();
 if(document.fonts)document.fonts.ready.then(fit);
